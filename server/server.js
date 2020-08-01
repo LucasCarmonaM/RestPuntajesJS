@@ -18,10 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 // Json response para opcion -c
 const ResC = {};
 
-
-
 app.use(require('../rutas/carreras.js'));
-
 
 
 app.listen(process.env.PORT, () => {
