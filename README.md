@@ -1,361 +1,529 @@
 # Proyecto API REST Computacion Paralela y Distribuida
 
+  
+
 ## Informacion
+
+  
 
 API REST desarrollada para la asignatura de computación paralela y distribuida - UTEM.
 
+  
+
 ## Requerimientos
+
+  
 
 Para el correcto funcionamiento, se requieren las siguientes tecnologías:
 
-- [Node JS](https://nodejs.org/es/download/) 
-- [MongoDB](https://www.mongodb.com/try/download/community) (Versión utilizada: v4.2.7)
+  
+
+-  [Node JS](https://nodejs.org/es/download/)
+
+  
 
 En el caso de utilizar Ubuntu se deben instalar con los siguientes comandos:
 
-### Node JS
+  
+
+#### Node JS
+
 - Primero comprobaremos si esta instalado con los siguientes comandos en la terminal:
+
 ```
-    $ nodejs -v
-    $ nodejs
+$ nodejs -v
+$ nodejs
 ```
+
 - En caso de no devolvernos la version, procedemos a instalarlo de la siguiente manera
+
 ```
-    $ sudo apt-get update
-    $ sudo apt-get install node
-    $ sudo apt-get install nodejs
+$ sudo apt-get update
+$ sudo apt-get install node
+$ sudo apt-get install nodejs
 ```
+
 - Volvemos al primer paso para comprobar que se instalo de manera correcta.
 
-### 
+```
+$ nodejs -v
+$ nodejs
+```
+
+#### Instalar NPM (Node Package Manager)
+
+```
+$ sudo apt-get install npm
+```
+
+  
 
 ## Uso
 
-1) Clonar el repositorio en un directorio con **```git clone https://github.com/YerkoFC/proyecto-rest-CDP.git```**.
-2) Ubicado en dicho directorio, debe ejecutar **```npm install```** para la instalación de todos los módulos necesarios.
-3) Ejecutar **```node src/database/insertDocuments.js```** para insertar desde un archivo .json a una colección en mongo toda la información correspondiente a los requisitos de postulación de cada carrera en la UTEM.
-4) Una vez realizado lo anterior, debe ejecutar **```npm run start```** para ejecutar la aplicación.
+  
+
+1) Clonar el repositorio en un directorio con **```git clone https://github.com/LucasCarmonaM/RestPuntajesJS.git```**.
+
+2) Ubicado en dicho directorio, debe ejecutar **```$ npm install```** para la instalación de todos los módulos necesarios.
+
+3) Una vez realizado lo anterior, debe ejecutar **```$ npm run start```** para ejecutar la aplicación (Servidor).
+
+  
 
 ## Test
 
+  
 Para el testing de la aplicación se pueden utilizar alguna de las siguientes herramientas:
 
-- [Postman](https://www.postman.com/downloads/) (Usado para los ejemplos)
-- [Insomnia](https://insomnia.rest/download/)
-- [SoapUI](https://www.soapui.org/downloads/soapui/)
+-  [Postman](https://www.postman.com/downloads/) (Usado para los ejemplos)  
 
-## endpoints
+## Endpoints
 
--  **[POST] _/api/users/signup_**
-
-    **Request body:** application/x-www-form-urlencoded
-    
-    **Ejemplo:**
-    
-    ``` 
-        KEY           VALUE
-        username:     user-name-test  
-        useremail:    user-email-test@gmail.com
-        userpassword: 123456
-    ```
-    **Las KEYS establecidas deben tener si o si los nombres del ejemplo!**
-    
-    **Respuestas:**
-    
-    - Código: 200
-      - Descripción: Signup correcto
-      - Ejemplo: 
-      
-      ```
-      {
-          "ok": true,
-          "userDB": {
-              "_id": "5f1616c43bcef223280d819c",
-              "username": user-name-test  ",
-              "email": "user-email-test@gmail.com",
-              "__v": 0
-          }
-      }
-      ```
-    - Código: 400
-        - Descripción: Error en la petición
-        - Ejemplo: 
-        ```
-      {
-          "ok": false,
-          "err": {
-              "message": "Hay datos faltantes en el body de la petición",
-          }
-      }
-      ```
-
-- **[POST] _/api/users/signin_**
-
-    **Request body:** application/x-www-form-urlencoded
-    
-     **Ejemplo:**
-    
-    ``` 
-        KEY           VALUE 
-        useremail:    user-email-test@gmail.com
-        userpassword: 123456
-    ```
-
-    **Respuestas:**
-    
-    - Código: 200
-      - Descripción: Signin correcto
-      - Ejemplo: 
-      
-      ```
-      {
-        "ok": true,
-        "usuario": {
-            "_id": "5f1546cd22c97b0017fc87ad",
-            "username": "user-name-test",
-            "email": "user-email-test@gmail.com",
-            "__v": 0
-        },
-        "token":    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Il9pZCI6IjVmMTU0NmNkMjJjOTdiMDAxN2ZjODdhZCIsInVzZXJuYW1lIjoiWWVya28gRm9uY2VhIENhc3RybyIsImVtYWlsIjoieWVya29mb25jZWEuOTdAZ21haWwuY29tIiwiX192IjowfSwiaWF0IjoxNTk1MzAyMDQ4LCJleHAiOjE1OTUzMDQ2NDB9.gCjwXGN6OYLL-keatkUN3ie5msNJu3TssJHNGfHvJGo"
-      }
-      ```
-    - Código: 401
-        - Descripción: Error en la petición
-        - Ejemplo: 
-        ```
-      {
-          "ok": false,
-          "err": {
-              "message": "Usuario o contraseña incorrectos",
-          }
-      }
-      ```
-- **[GET] _/api/careers/code_**
-
-    **Query params:** 
-    ``` 
-        KEY      VALUE
-        cod:     21041
-    ```
-    **Headers:** 
-    ``` 
-        KEY        VALUE
-        token:     your-token
-    ```
-    **Las KEYS establecidas deben tener si o si los nombres del ejemplo!**
-
-    **Respuestas:**
-    
-    - Código: 200
-      - Descripción: Información de la carrera
-      - Ejemplo: 
-      
-      ```
-      {
-          "ok": true,
-          "career": {
-              "_id": "5f15425913fe850d58c14d8d",
-              "carrera": "Ingeniería Civil en Computación, mención Informática",
-              "codigo": 21041,
-              "nem": 10,
-              "ranking": 25,
-              "matematica": 35,
-              "lenguaje": 20,
-              "histcien": 10,
-              "minimoPond": 0,
-              "vacantes": 130,
-              "primero": 673.65,
-              "ultimo": 539.35,
-              "__v": 0
-          }
-      }
-      ```
-    - Código: 400
-        - Descripción: Error en la petición
-        - Ejemplo: 
-        ```
-        {
-            "ok": false,
-            "err": {
-                "message": "Código de carrera requerido como query param"
-            }
-        }
-        ```
-        
-     - Código: 401
-        - Descripción: No autorizado
-        - Ejemplo: 
-        ```
-        {
-            "ok": false,
-            "err": {
-                "message": "Token no válido"
-            }
-        }
-        ```
-        
-    - Código: 404
-        - Descripción: Recurso no encontrado
-        - Ejemplo: 
-        ```
-        {
-            "ok": false,
-            "err": {
-                "message": "No existe carrera asociada al código recibido como query param"
-            }
-        }
-        ```
-- **[GET] _/api/careers/name_**
-    
-    **Query params:** 
-    ``` 
-        KEY          VALUE
-        career1:     Dibujante Proyectista
-        career2:     Ingeniería Civil en Computación, mención Informática
-    ```
-    **Headers:** 
-    ``` 
-        KEY        VALUE
-        token:     your-token
-    ```
-    **Respuestas:**
-    
-    - Código: 200
-      - Descripción: Información de la carrera
-      - Ejemplo: 
-      
-      ```
-      {
-          "ok": true,
-          "careers": [
-              {
-                  "_id": "5f15425913fe850d58c14d8d",
-                  "carrera": "Ingeniería Civil en Computación, mención Informática",
-                  "codigo": 21041,
-                  "nem": 10,
-                  "ranking": 25,
-                  "matematica": 35,
-                  "lenguaje": 20,
-                  "histcien": 10,
-                  "minimoPond": 0,
-                  "vacantes": 130,
-                  "primero": 673.65,
-                  "ultimo": 539.35,
-                  "__v": 0
-              },
-              {
-                  "_id": "5f15425913fe850d58c14d94",
-                  "carrera": "Dibujante Proyectista",
-                  "codigo": 21071,
-                  "nem": 10,
-                  "ranking": 25,
-                  "matematica": 35,
-                  "lenguaje": 20,
-                  "histcien": 10,
-                  "minimoPond": 0,
-                  "vacantes": 25,
-                  "primero": 689.85,
-                  "ultimo": 496.45,
-                  "__v": 0
-              }
-          ]
-      }
-      ```
-      
-     - Código: 401
-        - Descripción: No autorizado
-        - Ejemplo: 
-        ```
-        {
-            "ok": false,
-            "err": {
-                "message": "Token no válido"
-            }
-        }
-        ```      
-        
-    - Código: 404
-      - Descripción: Recurso no encontrado
-      - Ejemplo: 
-      ```
-      {
-          "ok": false,
-          "err": {
-            "message": "Las carreras ingresadas no tienen alguna información asociada en la base de datos"
-          }
-      }
-      ```
-          
-- **[POST] _/api/careers/scores_**
-
-    **Request body:** application/x-www-form-urlencoded
-    **Headers:** 
-    ``` 
-        KEY        VALUE
-        token:     your-token
-    ```
-    **Ejemplo:**
-    
-    ``` 
-        KEY             VALUE
-        nem:            500
-        ranking:        850
-        matematicas:    450
-        lenguaje:       850
-        ciencias:       369
-        historia:       600
-    ```
-    **Las KEYS establecidas deben tener si o si los nombres del ejemplo!**
-
-   **Respuestas:**
-   - Código: 200
-      - Descripción: Información de las 10 carreras con mayor posibilidad de postular
-      - Ejemplo: 
-      ```
-         {
-             "ok": true,
-             "data": [
-                 {
-                     "careerCode": 21002,
-                     "careerName": "Bibliotecología y Documentación",
-                     "postulationScore": 715,
-                     "place": 1
-                 },
-                 {
-                     "careerCode": 21012,
-                     "careerName": "Contador Público y Auditor",
-                     "postulationScore": 682.5,
-                     "place": 1
-                 }, ...
-             ]
-         }
-     ```
+## - [POST]  _/api/autenticacion_
 
 
-      
-   - Código: 400
-      - Descripción: Error en la petición
-      - Ejemplo: 
-      ```
-      {
-          "ok": false,
-          "err": {
-              "message": "Hay datos faltantes en el body de la petición"
-          }
-      }
-      ```      
-      
-      
-            
-   - Código: 401
-      - Descripción: No autorizado
-      - Ejemplo: 
-      ```
-      {
-          "ok": false,
-          "err": {
-              "message": "Token no válido"
-          }
-      }
-      ```      
-    
+**Request body:** application/x-www-form-urlencoded  
+
+**Usuario existente:**  
+
+```
+
+KEY:VALUE
+
+usuario: Admin
+
+password: 1234
+
+```
+
+**Respuestas:**
+
+#### Caso exitoso:
+
+- Código: 200
+
+- Descripción: Autenticacion correcta
+
+- Ejemplo:
+
+```javascript
+
+{
+
+	"ok": true,
+
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiQWRtaW4iLCJpYXQiOjE1OTY5MjI3MzgsImV4cCI6MTU5NjkyNTMzMH0.qJJXpHltvCpGy5cm5i-MpDux8wBVJlrY6B1GxaovPuE"
+
+}
+```
+#### Caso fallido:
+
+- Código: 401
+
+- Descripción: Usuario no autorizado
+
+- Ejemplo:
+
+```javascript
+
+{
+
+	"ok": false,
+
+	"err": {
+
+		"mensaje": "No existe usuario asociado a las credenciales ingresadas"
+
+	}
+
+}
+
+```
+
+## - [GET]  _/api/carreras/codigo_
+
+  
+
+**Query params:**  
+
+```
+
+KEY:VALUE
+
+cod: 21041
+
+```
+
+**Headers:**
+
+```
+
+KEY:VALUE
+
+token: your-token
+
+```
+
+**Las `KEYS` establecidas deben tener si o si los nombres del ejemplo!**
+
+  
+
+**Respuestas:**
+
+#### Caso exitoso:
+
+- Código: 200
+
+- Descripción: Información de la carrera
+
+- Ejemplo:
+
+```javascript
+
+{
+	"ok": true,
+	"carrera": {
+		"nombreCarrera": "Ingeniería Civil en Computación, mención 				Informática",
+		"codigoCarrera": 21041,
+		"Nem": 10,
+		"Ranking": 25,
+		"Lenguaje": 20,
+		"Matematica": 35,
+		"HistoriaOCiencias": 10,
+		"PuntajePromedio": 606.5,
+		"MinimoPostulacion": "No tiene",
+		"PromLenMat": 450,
+		"MinPonderado": 450,
+		"Vacantes": 130,
+		"PrimerMatri": 673.65,
+		"UltimoMatri": 539.35
+	}
+}
+
+```
+#### Caso fallido:
+
+- Código: 400
+
+- Descripción: No se ingresaron parametros en la url
+
+- Ejemplo:
+
+```javascript
+{
+
+	"ok": false,
+
+	"err": {
+
+		"mensaje": "Se debe ingresar un parametro válido"
+
+	}
+
+}
+```
+#### Caso fallido:
+
+- Código: 401
+
+- Descripción: No autorizado
+
+- Ejemplo:
+
+```javascript
+{
+	"ok": false,
+
+	"err": {
+
+		"mensaje": "Token no válido"
+
+	}
+}
+```
+#### Caso fallido:
+
+- Código: 404
+
+- Descripción: No se pudo encontrar informacion solicitada
+
+- Ejemplo:
+
+```javascript
+{
+
+	"ok": false,
+
+	"err": {
+
+		"mensaje": "No se ha encontrado una carrera asociada con el código 210411"
+
+	}
+
+}
+```
+## -[GET]  _/api/carreras/nombre_
+
+**Query params:**
+
+```
+
+KEY:VALUE
+
+nombre: Administracion
+
+```
+
+**Headers:**
+
+```
+
+KEY:VALUE
+
+token: your-token
+
+```
+
+**Respuestas:**
+
+#### Caso exitoso:
+
+- Código: 200
+
+- Descripción: Información de la carrera
+
+- Ejemplo:
+
+```javascript
+
+{
+	"ok": true,
+	"carreras": [
+		{
+			"nombreCarrera": "Ingeniería en Administración Agroindustrial",
+			"codigoCarrera": 21015,
+			"Nem": 10,
+			"Ranking": 20,
+			"Lenguaje": 30,
+			"Matematica": 30,
+			"HistoriaOCiencias": 10,
+			"PuntajePromedio": 545.3,
+			"MinimoPostulacion": "No tiene",
+			"PromLenMat": 450,
+			"MinPonderado": 450,
+			"Vacantes": 30,
+			"PrimerMatri": 628.8,
+			"UltimoMatri": 461.8
+		},
+		{
+			"nombreCarrera": "Administración Pública",
+			"codigoCarrera": 21089,
+			"Nem": 15,
+			"Ranking": 20,
+			"Lenguaje": 30,
+			"Matematica": 25,
+			"HistoriaOCiencias": 10,
+			"PuntajePromedio": 569.4,
+			"MinimoPostulacion": "No tiene",
+			"PromLenMat": 450,
+			"MinPonderado": 450,
+			"Vacantes": 35,
+			"PrimerMatri": 625.8,
+			"UltimoMatri": 513
+		}
+	]
+}
+
+```
+
+#### Caso fallido:
+
+- Código: 401
+
+- Descripción: No autorizado
+
+- Ejemplo:
+
+```javascript
+
+{
+	"ok": false,
+	"err": {
+		"mensaje": "Token no válido"
+	}
+}
+
+```
+#### Caso fallido:
+
+- Código: 404
+
+- Descripción: Recurso no encontrado
+
+- Ejemplo:
+
+```javascript
+
+{
+	"ok": false,
+	"err": {
+		"mensaje": "No se encontró información asociada a los datos ingresados"
+	}
+}
+
+```
+
+## -[POST]  _/api/carreras/puntajes_
+
+  
+
+**Request body:** application/x-www-form-urlencoded
+
+
+```
+
+KEY:VALUE
+
+Nem: 500
+
+Ranking: 850
+
+Matematicas: 450
+
+Lenguaje: 850
+
+Ciencias: 380
+
+Historia: 600
+
+```
+
+
+
+**Headers:**
+
+```
+
+KEY:VALUE
+
+token: your-token
+
+```
+
+**Las KEYS establecidas deben tener si o si los nombres del ejemplo!**
+
+  
+
+**Respuestas:**
+
+#### Caso exitoso:
+
+- Código: 200
+
+- Descripción: Información de las 10 carreras con mejor posibilidad de postular
+
+- Ejemplo:
+
+```javascript
+{
+	"ok":  true,
+	"carreras":  [
+		{
+			"codigo":  21082,
+			"nombre":  "Ingeniería en Gestión Turística",
+			"puntaje_postulacion":  507,
+			"lugar_tentativo":  18
+		},
+		{
+			"codigo":  21015,
+			"nombre":  "Ingeniería en Administración Agroindustrial",
+			"puntaje_postulacion":  507,
+			"lugar_tentativo":  22
+		},
+		{
+			"codigo":  21087,
+			"nombre":  "Ineniería Civil en Prevención de Riesgos y Medioambiente",
+			"puntaje_postulacion":  506,
+			"lugar_tentativo":  22
+		},
+		{
+			"codigo":  21046,
+			"nombre":  "Bachillerato en Ciencias de la Ingeniería",
+			"puntaje_postulacion":  507,
+			"lugar_tentativo":  24
+		},
+		{
+			"codigo":  21071,
+			"nombre":  "Dibujante Proyectista",
+			"puntaje_postulacion":  507,
+			"lugar_tentativo":  24
+		},
+		{
+			"codigo":  21039,
+			"nombre":  "Ingeniería en Industria Alimentaria",
+			"puntaje_postulacion":  506,
+			"lugar_tentativo":  24
+		},
+		{
+			"codigo":  21083,
+			"nombre":  "Química Industrial",
+			"puntaje_postulacion":  516,
+			"lugar_tentativo":  26
+		},
+		{
+			"codigo":  21002,
+			"nombre":  "Bibliotecología y Documentación",
+			"puntaje_postulacion":  505,
+			"lugar_tentativo":  27
+		},
+		{
+			"codigo":  21023,
+			"nombre":  "Diseño Industrial",
+			"puntaje_postulacion":  507,
+			"lugar_tentativo":  43
+		},
+		{
+			"codigo":  21045,
+			"nombre":  "Ingeniería Industrial",
+			"puntaje_postulacion":  507,
+			"lugar_tentativo":  43
+		}
+	]
+}
+```
+#### Caso fallido:
+
+- Código: 400
+
+- Descripción: Error en la peticion
+
+- Ejemplo:
+
+```javascript
+
+{
+	"ok":  false,
+	"err":  {
+		"mensaje":  "Parametros requeridos en el body"
+	}
+}
+
+```
+#### Caso fallido:
+
+- Código: 401
+
+- Descripción: No autorizado
+
+- Ejemplo:
+
+```javascript
+
+{
+	"ok":  false,
+	"err":  {
+		"mensaje":  "Token no válido"
+	}
+}
+
+```
