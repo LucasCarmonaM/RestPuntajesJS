@@ -8,7 +8,7 @@ API REST desarrollada para la asignatura de computación paralela y distribuida 
 
 Para el correcto funcionamiento, se requieren las siguientes tecnologías:
 
-- [Node JS](https://nodejs.org/es/download/) (Versión utilizada: v12.16.3) <img>https://image.flaticon.com/icons/svg/919/919825.svg</img>
+- [Node JS](https://nodejs.org/es/download/) (Versión utilizada: v12.16.3) ![a building](https://image.flaticon.com/icons/svg/919/919825.svg)
 - [MongoDB](https://www.mongodb.com/try/download/community) (Versión utilizada: v4.2.7)
 
 ## Uso
