@@ -13,13 +13,12 @@ Para el correcto funcionamiento, se requieren las siguientes tecnologías:
 
 En el caso de utilizar Ubuntu se deben instalar con los siguientes comandos:
 
-- Node JS
+### Node JS
     - Primero comprobaremos si esta instalado con los siguientes comandos en la terminal:
 ```
-$
+    $ nodejs -v
+    $ nodejs
 ```
-
----
     - En caso de no devolvernos la version, procedemos a instalarlo de la siguiente manera
 ```
     $ sudo apt-get update
