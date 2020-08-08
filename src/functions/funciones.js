@@ -142,7 +142,7 @@ const calcularPtje = (puntajes, carrera) => {
         codigo: carrera.codigo,
         nombre: carrera.nombreCarrera,
         puntaje_postulacion: resultado,
-        lugar_tentativo: lugarTentativo(resultado, carrera, (carrera.primero + carrera.ultimo) / 2)
+        lugar_tentativo: lugarTentativo(resultado, carrera, (carrera.primero + carrera.ultimo) / carrera.vacantes)
     }
 }
 
@@ -158,13 +158,28 @@ const getCarrerasTop = (carreras, puntajes) => {
 
     // Se recorre el arreglo que contiene todas las carreras
     carreras.forEach(element => {
+        let ponderado = calcularPtje(puntajes, element);
         // Si el ptje ponderado es mayor que el ptje del ultimo matriculado, se añade dicho este al arreglo inicializado al comienzo
-        if (calcularPtje(puntajes, element).puntaje_postulacion >= element.ultimo) {
-            arregloPtjes.push(calcularPtje(puntajes, element));
+        if (ponderado.puntaje_postulacion >= element.ultimo) {
+            if(((parseInt(puntajes.Matematica) + parseInt(puntajes.Lenguaje))/2) >= 450) {
+                arregloPtjes.push(calcularPtje(puntajes, element));
+            }
         }
-
     });
 
+    // Ordena el array de objetos en base al puntaje
+    arregloPtjes.sort((a, b) => {
+
+        if (a.puntaje_postulacion < b.puntaje_postulacion) {
+            return 1;
+        }
+        if (a.puntaje_postulacion > b.puntaje_postulacion) {
+            return -1;
+        }
+
+        return 0;
+    });
+    
     // Ordena el array de objetos en base al lugar tentativo
     arregloPtjes.sort((a, b) => {
 
