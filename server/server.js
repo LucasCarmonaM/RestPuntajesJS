@@ -29,24 +29,8 @@ app.use('/api', require('../rutas/autenticacion'));
 // ==========================
 // Iniciación del servidor en un puerto establecido
 // ==========================
-
-
-
-// Json response para opcion -c
-const ResC = {};
-
-
-// Rutas
-
-app.use(require('../rutas/carreras.js'));
-app.use(require('../rutas/autenticacion'));
-
-
-
-
-// Iniciación del servidor
-
-
 app.listen(process.env.PORT, () => {
     console.log(`Escuchando el puerto ${process.env.PORT}`);
 });
+
+// comentario
