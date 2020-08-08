@@ -12,7 +12,7 @@ const JsonCarreras = require('../resources/carreras.json');
 // ==========================
 // funciones
 // ==========================
-const { getInfoCarrera, getInfoCarreras, getCarrerasTop } = require('../funciones/funciones');
+const { getInfoCarrera, getInfoCarreras, getCarrerasTop } = require('../functions/funciones');
 
 // ==========================
 // middlewares
@@ -120,38 +120,51 @@ app.get('/carreras/nombre', verificaToken, (req, res) => {
 // ========================================================================================================
 app.post('/carreras/puntajes', verificaToken, (req, res) => {
 
-    // Si hay algún puntaje que no se ingresó en el body, el servidor responde con un error 400 indicando que faltan parametros en el body
-    if ((Object.keys(req.body).length < 6) || req.body === undefined) {
-
+    let ptjes = Object.values(req.body);
+    // Encuentra el primer elemento que cumpla con la condicion que se pasa en la funcion
+    let validacionPtjs = ptjes.find(x => x > 850 || x < 150);
+    // Si existe algun ptje mayor a 850 o menor a 150
+    if(validacionPtjs){
         res.status(400).json({
             ok: false,
             err: {
-                mensaje: 'Parametros requeridos en el body'
+                 mensaje: 'No pueden existir puntajes mayores a 850 o menores que 150'
             }
         });
-        
-    } else { // Por el contrario, si todos los puntajes se ingresan correctamente se procede a llamar a la función "opcionC"
+    } else {
+        // Si hay algún puntaje que no se ingresó en el body, el servidor responde con un error 400 indicando que faltan parametros en el body
+        if ((Object.keys(req.body).length < 6) || req.body === undefined) {
 
-        // Se guarda en una variable lo que retorna la función "opcionC"
-        let carreras = getCarrerasTop(JsonCarreras, req.body);
-
-        // Si no existe ninguna carrera a la que se pueda postular con los puntajes, el servidor responde con un mensaje informativo
-        if(carreras.length === 0){
-
-            res.json({
-                ok: true,
-                mensaje: 'La ponderación final no cumple con los requisitos mínimos para poder postular a lo menos a alguna carrera'
+            res.status(400).json({
+                ok: false,
+                err: {
+                    mensaje: 'Parametros requeridos en el body'
+                }
             });
-
-        } else { // En el caso contrario, el servidor responde con un json que contiene las mejores 10 opciones de carreras
             
-            res.json({
-                ok: true,
-                carreras
-            });
+        } else { // Por el contrario, si todos los puntajes se ingresan correctamente se procede a llamar a la función "opcionC"
+
+            // Se guarda en una variable lo que retorna la función "opcionC"
+            let carreras = getCarrerasTop(JsonCarreras, req.body);
+
+            // Si no existe ninguna carrera a la que se pueda postular con los puntajes, el servidor responde con un mensaje informativo
+            if(carreras.length === 0){
+
+                res.json({
+                    ok: true,
+                    mensaje: 'El promedio entre los ptjes de lenguaje y matemática no cumple con los requisitos mínimos para poder postular a lo menos a alguna carrera'
+                });
+
+            } else { // En el caso contrario, el servidor responde con un json que contiene las mejores 10 opciones de carreras
+                
+                res.json({
+                    ok: true,
+                    carreras
+                });
+
+            }
 
         }
-
     }
 });
 
