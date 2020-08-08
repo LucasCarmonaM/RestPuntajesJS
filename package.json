@@ -1,5 +1,5 @@
 {
-    "name": "rest-para-flutter",
+    "name": "proyecto-rest",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -12,7 +12,6 @@
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.1",
-        "jsonwebtoken": "^8.5.1",
-        "yargs": "^15.4.1"
+        "jsonwebtoken": "^8.5.1"
     }
 }
