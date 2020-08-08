@@ -193,7 +193,7 @@ const getCarrerasTop = (carreras, puntajes) => {
         return 0;
     });
 
-    // Retorna las 10 mejores opciones
+    // Retorna las 10 mejores opciones.
     return arregloPtjes.slice(0, 10);
 }
 

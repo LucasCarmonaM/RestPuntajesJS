@@ -73,7 +73,7 @@ $ sudo apt-get install npm
 ## Test
 
   
-Para el testing de la aplicación se pueden utilizar alguna de las siguientes herramientas:
+Para el testing de la aplicación se recomienda utilizar la siguiente herramienta:
 
 -  [Postman](https://www.postman.com/downloads/) (Usado para los ejemplos)  
 
