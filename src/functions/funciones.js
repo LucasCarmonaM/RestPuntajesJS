@@ -19,7 +19,6 @@ const getInfoCarrera = (carrerasJson, codigoCarrera) => {
 
     // Si se encontró una coincidencia con el código ingresado como query param, retorna la información asociada a dicho este
     if (i !== -1) {
-
         return {
             nombreCarrera: carrerasJson[i].nombreCarrera,
             codigoCarrera: carrerasJson[i].codigo,
@@ -102,10 +101,10 @@ const lugarTentativo = (puntaje, carrera, valorPorLugar) => {
     if (puntaje >= carrera.primero) {
         return 1;
     } else { // Si no
-        // Calcula el lugar tentativo
+        // Calcula el lugar tentativo valorPorLugar (Indice de aumento de los puntjes)
         let resultado = (carrera.primero - puntaje) / valorPorLugar;
 
-        // Si la aproximacion del lugrr tentativo es igual a cero, este también sería el primero 
+        // Si la aproximacion del lugar tentativo es igual a cero, este también sería el primero 
         if (Math.round(resultado) === 0) {
             return 1;
         } else { // Si no, retorna el lugar tentativo correspondiente
