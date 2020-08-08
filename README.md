@@ -15,20 +15,17 @@ En el caso de utilizar Ubuntu se deben instalar con los siguientes comandos:
 
 - Node JS
     - Primero comprobaremos si esta instalado con los siguientes comandos en la terminal:
----
 ```
-    nodejs -v
-    nodejs
+$
 ```
+
 ---
     - En caso de no devolvernos la version, procedemos a instalarlo de la siguiente manera
----
 ```
-    sudo apt-get update
-    sudo apt-get install node
-    sudo apt-get install nodejs
+    $ sudo apt-get update
+    $ sudo apt-get install node
+    $ sudo apt-get install nodejs
 ```
----
     - Volvemos al primer paso para comprobar que se instalo de manera correcta.
 
 
