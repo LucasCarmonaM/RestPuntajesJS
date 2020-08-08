@@ -14,7 +14,7 @@ const removerTildes = (str) => {
 const getInfoCarrera = (carrerasJson, codigoCarrera) => {
 
     // Retorna el indice en donde se encuentra la información de la carrera asociada al codigo de carrera. Si no lo encuentra, retorna -1
-    let i = carrerasJson.map((e) => {return e.codigo;}).indexOf(parseInt(codigoCarrera));
+    let i = carrerasJson.map((e) => { return e.codigo; }).indexOf(parseInt(codigoCarrera));
     // let i = carrerasJson.map((e) => e.codigo).indexOf(parseInt(codigoCarrera));
 
     // Si se encontró una coincidencia con el código ingresado como query param, retorna la información asociada a dicho este
@@ -39,7 +39,7 @@ const getInfoCarrera = (carrerasJson, codigoCarrera) => {
 
     } else {
 
-        return { };
+        return {};
 
     }
 }
@@ -50,7 +50,7 @@ const getInfoCarrera = (carrerasJson, codigoCarrera) => {
 // @return Array de objetos con la información de las carreras
 // ====================================================================================
 const getInfoCarreras = (carrerasJson, nombresCarreras) => {
-    
+
     let carreras = [];
     // Recorre el objeto que contiene los nombres de las carreras ingresadas como query param
     for (let prop in nombresCarreras) {
@@ -58,7 +58,7 @@ const getInfoCarreras = (carrerasJson, nombresCarreras) => {
         // El constructor de la clase RegExp recibe como primer parametro el término o patrón de la expresión
         // y como segundo parametro recibe el flag, el cual para este caso es 'i' lo que indica que la expresión será insensible a mayúsculas y minpusculas
         let regex = new RegExp(removerTildes(nombresCarreras[prop]), 'i');
-        
+
         // Recorre el array que contiene objetos con la información de las carreras
         carrerasJson.forEach((carrera) => {
 
@@ -141,7 +141,7 @@ const calcularPtje = (puntajes, carrera) => {
     return {
         codigo: carrera.codigo,
         nombre: carrera.nombreCarrera,
-        puntaje_postulacion: resultado,
+        puntaje_postulacion: parseFloat(resultado.toFixed(2)),
         lugar_tentativo: lugarTentativo(resultado, carrera, (carrera.primero + carrera.ultimo) / carrera.vacantes)
     }
 }
@@ -152,16 +152,16 @@ const calcularPtje = (puntajes, carrera) => {
 // @return Array con las 10 carreras en las que se tienen mayores opciones de ingresar
 // ====================================================================================
 const getCarrerasTop = (carreras, puntajes) => {
-    
+
     // Arreglo que contendrá las postulaciones en todas las carreras
-    let arregloPtjes = []; 
+    let arregloPtjes = [];
 
     // Se recorre el arreglo que contiene todas las carreras
     carreras.forEach(element => {
         let ponderado = calcularPtje(puntajes, element);
         // Si el ptje ponderado es mayor que el ptje del ultimo matriculado, se añade dicho este al arreglo inicializado al comienzo
         if (ponderado.puntaje_postulacion >= element.ultimo) {
-            if(((parseInt(puntajes.Matematica) + parseInt(puntajes.Lenguaje))/2) >= 450) {
+            if (((parseInt(puntajes.Matematica) + parseInt(puntajes.Lenguaje)) / 2) >= 450) {
                 arregloPtjes.push(calcularPtje(puntajes, element));
             }
         }
@@ -179,7 +179,7 @@ const getCarrerasTop = (carreras, puntajes) => {
 
         return 0;
     });
-    
+
     // Ordena el array de objetos en base al lugar tentativo
     arregloPtjes.sort((a, b) => {
 
