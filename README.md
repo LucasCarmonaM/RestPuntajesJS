@@ -8,8 +8,18 @@ API REST desarrollada para la asignatura de computación paralela y distribuida 
 
 Para el correcto funcionamiento, se requieren las siguientes tecnologías:
 
-- [Node JS](https://nodejs.org/es/download/) (Versión utilizada: v12.16.3)<div>Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a></div>
+- [Node JS](https://nodejs.org/es/download/) 
 - [MongoDB](https://www.mongodb.com/try/download/community) (Versión utilizada: v4.2.7)
+
+En el caso de utilizar Ubuntu se deben instalar con los siguientes comandos:
+
+- Node JS
+    - Primero comprobaremos si esta instalado de la siguiente manera:
+```
+    nodejs -v
+    nodejs
+```
+
 
 ## Uso
 
