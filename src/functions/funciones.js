@@ -103,7 +103,6 @@ const lugarTentativo = (puntaje, carrera, valorPorLugar) => {
     } else { // Si no
         // Calcula el lugar tentativo valorPorLugar (Indice de aumento de los puntjes)
         let resultado = (carrera.primero - puntaje) / valorPorLugar;
-        console.log(valorPorLugar);
 
         // Si la aproximacion del lugar tentativo es igual a cero, este también sería el primero 
         if (Math.round(resultado) === 0) {
